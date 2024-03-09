@@ -145,6 +145,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4938971393909390}
+  - component: {fileID: 114911284915140712}
   m_Layer: 0
   m_Name: Rocket Ship
   m_TagString: Untagged
@@ -242,14 +243,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973891150615934}
-  m_LocalRotation: {x: 0.3476626, y: 0.6781439, z: 0.024419095, w: 0.64703584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253683170381476}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 24.632002, y: 100.234, z: 33.607002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4943885533295208
 Transform:
   m_ObjectHideFlags: 1
@@ -584,6 +585,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114911284915140712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973891150615934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1237be57c3149947a677ce5ad3e253d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135001753836009178
 SphereCollider:
   m_ObjectHideFlags: 1
