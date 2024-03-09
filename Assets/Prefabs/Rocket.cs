@@ -40,6 +40,8 @@ public class Rocket : MonoBehaviour {
 
     private void Rotate()
     {
+        rb.freezeRotation = true; // take manual control of rotation
+
         if (Input.GetKey("left"))
         {
             transform.Rotate(Vector3.forward);
@@ -48,7 +50,8 @@ public class Rocket : MonoBehaviour {
         {
             transform.Rotate(-Vector3.forward);
         }
-        Thrust();
+
+        rb.freezeRotation = false; // resume physics control of rotation
     }
 
 }
