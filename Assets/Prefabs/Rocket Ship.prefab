@@ -694,7 +694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 54354438770543366}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 82777276897259220}
+  rotationSpeed: 100
+  thrust: 0
 --- !u!135 &135001753836009178
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour {
-    [SerializeField]
-    public Rigidbody rb;
-    public AudioSource audioSource;
+    [SerializeField] public Rigidbody rb;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float thrust;
 
     void Start()
 
@@ -42,13 +43,15 @@ public class Rocket : MonoBehaviour {
     {
         rb.freezeRotation = true; // take manual control of rotation
 
+        float rotationThisFrame = rotationSpeed * Time.deltaTime;
+
         if (Input.GetKey("left"))
         {
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         if (Input.GetKey("right"))
         {
-            transform.Rotate(-Vector3.forward);
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
 
         rb.freezeRotation = false; // resume physics control of rotation
