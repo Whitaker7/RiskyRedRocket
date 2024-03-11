@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour {
     private Rigidbody rb;
     private AudioSource audioSource;
     [SerializeField] private float rotationSpeed = 150f;
     [SerializeField] private float thrust = 100f;
+    [SerializeField] private Text text;
+    public float fuel = 100;
+    [SerializeField] private float fuelCost = 1f;
 
     void Start()
 
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -20,18 +27,20 @@ public class Rocket : MonoBehaviour {
     {
         Thrust();
         Rotate();
+        text.text = fuel.ToString();
     }
 
     void OnCollisionEnter(Collision collision)
     {
-
-        print("Collided");
-        foreach (ContactPoint contact in collision.contacts)
+        switch (collision.gameObject.tag)
         {
-            Debug.DrawRay(contact.point, contact.normal, Color.white);
+            case "Friendly":
+                break;
+            default:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
         }
-        //if (collision.relativeVelocity.magnitude > 2)
-        //    audioSource.Play();
+
     }
 
     private void Thrust()
@@ -41,6 +50,11 @@ public class Rocket : MonoBehaviour {
         //upwards thrust and sounds
         if (Input.GetKey("up") || Input.GetKey(KeyCode.Space))
         {
+            if (fuel > 0)
+            {
+                fuel -= fuelCost;
+                print(fuel);
+            }
             rb.AddRelativeForce(Vector3.up * thrustThisFrame);
             if (!audioSource.isPlaying)
             {
