@@ -693,10 +693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c598a1f4d76244a9ea57ab51e116c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 54354438770543366}
-  audioSource: {fileID: 82777276897259220}
-  rotationSpeed: 100
-  thrust: 0
+  rotationSpeed: 150
+  thrust: 150
 --- !u!135 &135001753836009178
 SphereCollider:
   m_ObjectHideFlags: 1

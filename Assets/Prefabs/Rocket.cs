@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour {
-    [SerializeField] public Rigidbody rb;
-    [SerializeField] public AudioSource audioSource;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float thrust;
+    private Rigidbody rb;
+    private AudioSource audioSource;
+    [SerializeField] private float rotationSpeed = 150f;
+    [SerializeField] private float thrust = 100f;
 
     void Start()
 
@@ -22,12 +22,26 @@ public class Rocket : MonoBehaviour {
         Rotate();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+
+        print("Collided");
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            Debug.DrawRay(contact.point, contact.normal, Color.white);
+        }
+        //if (collision.relativeVelocity.magnitude > 2)
+        //    audioSource.Play();
+    }
+
     private void Thrust()
     {
+        float thrustThisFrame = thrust * Time.deltaTime;
+
         //upwards thrust and sounds
         if (Input.GetKey("up") || Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up);
+            rb.AddRelativeForce(Vector3.up * thrustThisFrame);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
