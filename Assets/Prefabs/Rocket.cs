@@ -10,7 +10,7 @@ public class Rocket : MonoBehaviour {
     private AudioSource audioSource;
     [SerializeField] private float rotationSpeed = 150f;
     [SerializeField] private float thrust = 100f;
-    [SerializeField] private Text text;
+    private Text fuelText;
     public float fuel = 100;
     [SerializeField] private float fuelCost = 1f;
 
@@ -20,6 +20,9 @@ public class Rocket : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
+        var fuelTextGameObject = GameObject.Find("FuelText");
+        fuelText = fuelTextGameObject.GetComponent<Text>();
+
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class Rocket : MonoBehaviour {
     {
         Thrust();
         Rotate();
-        text.text = fuel.ToString();
+        fuelText.text = fuel.ToString();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -53,7 +56,6 @@ public class Rocket : MonoBehaviour {
             if (fuel > 0)
             {
                 fuel -= fuelCost;
-                print(fuel);
             }
             rb.AddRelativeForce(Vector3.up * thrustThisFrame);
             if (!audioSource.isPlaying)
