@@ -13,6 +13,8 @@ public class Rocket : MonoBehaviour {
     private Text fuelText;
     public float fuel = 100;
     [SerializeField] private float fuelCost = 1f;
+    private bool bFinished = false;
+
 
     void Start()
 
@@ -23,14 +25,19 @@ public class Rocket : MonoBehaviour {
         var fuelTextGameObject = GameObject.Find("FuelText");
         fuelText = fuelTextGameObject.GetComponent<Text>();
 
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Thrust();
-        Rotate();
-        fuelText.text = fuel.ToString();
+        if (!bFinished)
+        {
+            Thrust();
+            Rotate();
+            fuelText.text = fuel.ToString();
+        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -38,6 +45,10 @@ public class Rocket : MonoBehaviour {
         switch (collision.gameObject.tag)
         {
             case "Friendly":
+                break;
+            case "Finish":
+                fuelText.text = "Level Complete!";
+                bFinished = true;
                 break;
             default:
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
