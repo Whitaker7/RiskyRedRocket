@@ -31,6 +31,7 @@ public class Rocket : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        
         if (!bFinished)
         {
             Thrust();
@@ -49,9 +50,10 @@ public class Rocket : MonoBehaviour {
             case "Finish":
                 fuelText.text = "Level Complete!";
                 bFinished = true;
+                SceneManager.LoadScene(1);
                 break;
             default:
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(0);
                 break;
         }
 
