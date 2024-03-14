@@ -696,10 +696,9 @@ MonoBehaviour:
   rotationSpeed: 150
   thrust: 1000
   fuelCost: 1
-  mainEngineAudio: {fileID: 8300000, guid: 31711781d4e660342b769d91931e2a1f, type: 3}
-  levelLoadCompleteAudio: {fileID: 8300000, guid: 5018aca9f5a989d468dcac8601b9b8ab,
-    type: 3}
-  crashAudio: {fileID: 8300000, guid: 45083b400f945674b9a0e43fb74b7273, type: 3}
+  mainEngine: {fileID: 8300000, guid: 31711781d4e660342b769d91931e2a1f, type: 3}
+  success: {fileID: 8300000, guid: 5018aca9f5a989d468dcac8601b9b8ab, type: 3}
+  crash: {fileID: 8300000, guid: 45083b400f945674b9a0e43fb74b7273, type: 3}
   fuel: 100
 --- !u!135 &135001753836009178
 SphereCollider:
