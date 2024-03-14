@@ -65,6 +65,7 @@ public class Rocket : MonoBehaviour {
                 break;
             default:
                 state = State.Dying;
+                audioSource.Stop();
                 audioSource.PlayOneShot(crash);
                 Invoke("LoadFirstLevel", 1f);
                 break;
