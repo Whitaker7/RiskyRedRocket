@@ -439,16 +439,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114154746223019054, guid: 6ca305248591a094188fbeb9bbf7c02a,
-        type: 2}
-      propertyPath: Canvas
-      value: 
-      objectReference: {fileID: 1249606434}
-    - target: {fileID: 114154746223019054, guid: 6ca305248591a094188fbeb9bbf7c02a,
-        type: 2}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 1216185777}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ca305248591a094188fbeb9bbf7c02a, type: 2}
   m_IsPrefabParent: 0
@@ -540,17 +530,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 521fc4a6a03e58843bb4a96191a66495, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1216185777 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114282451932946448, guid: 0237594d5d3f62e49a9873903e4e77c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1924438860}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!223 &1249606434 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223347993132136324, guid: 0237594d5d3f62e49a9873903e4e77c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1924438860}
 --- !u!1001 &1379474699
 Prefab:
   m_ObjectHideFlags: 0

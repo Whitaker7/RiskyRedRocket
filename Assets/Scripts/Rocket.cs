@@ -6,21 +6,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour {
-    private Rigidbody rb;
-    private AudioSource audioSource;
+
     [SerializeField] private float rotationSpeed = 150f;
     [SerializeField] private float thrust = 100f;
+    [SerializeField] private float fuelCost = 1f;
+    [SerializeField] private AudioClip mainEngine = null;
+    [SerializeField] private AudioClip success = null;
+    [SerializeField] private AudioClip crash = null;
+
+
+    private Rigidbody rb;
+    private AudioSource audioSource;
     private Text fuelText;
     public float fuel = 100;
-    [SerializeField] private float fuelCost = 1f;
     private bool bFinished = false;
     enum State { Alive, Dying, Transcending };
     State state = State.Alive;
 
 
     void Start()
-
     {
+
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
 
@@ -36,8 +42,8 @@ public class Rocket : MonoBehaviour {
         //todo Stop Sound if not alive
         if (state == State.Alive)
         {
-            Thrust();
-            Rotate();
+            RespondToThrustInput();
+            RespondToRotateInput();
             fuelText.text = fuel.ToString();
         }
         
@@ -54,10 +60,12 @@ public class Rocket : MonoBehaviour {
                 break;
             case "Finish":
                 state = State.Transcending;
+                audioSource.PlayOneShot(success);
                 Invoke("LoadNextScene", 1f);
                 break;
             default:
                 state = State.Dying;
+                audioSource.PlayOneShot(crash);
                 Invoke("LoadFirstLevel", 1f);
                 break;
         }
@@ -76,22 +84,13 @@ public class Rocket : MonoBehaviour {
         SceneManager.LoadScene(1);
     }
 
-    private void Thrust()
+    private void RespondToThrustInput()
     {
-        float thrustThisFrame = thrust * Time.deltaTime;
 
         //upwards thrust and sounds
         if (Input.GetKey("up") || Input.GetKey(KeyCode.Space))
         {
-            if (fuel > 0)
-            {
-                fuel -= fuelCost;
-            }
-            rb.AddRelativeForce(Vector3.up * thrustThisFrame);
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            Thrust();
         }
         else
         {
@@ -99,7 +98,22 @@ public class Rocket : MonoBehaviour {
         }
     }
 
-    private void Rotate()
+    private void Thrust()
+    {
+        float thrustThisFrame = thrust * Time.deltaTime;
+
+        if (fuel > 0)
+        {
+            fuel -= fuelCost;
+        }
+        rb.AddRelativeForce(Vector3.up * thrustThisFrame);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+    }
+
+    private void RespondToRotateInput()
     {
         rb.freezeRotation = true; // take manual control of rotation
 

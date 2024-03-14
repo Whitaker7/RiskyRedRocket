@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -86,7 +86,8 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 54a5c43ea77a28d439ead0048f2a82e7,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -484,16 +485,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114154746223019054, guid: 6ca305248591a094188fbeb9bbf7c02a,
-        type: 2}
-      propertyPath: Canvas
-      value: 
-      objectReference: {fileID: 1249606434}
-    - target: {fileID: 114154746223019054, guid: 6ca305248591a094188fbeb9bbf7c02a,
-        type: 2}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 1216185777}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ca305248591a094188fbeb9bbf7c02a, type: 2}
   m_IsPrefabParent: 0
@@ -585,17 +576,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 521fc4a6a03e58843bb4a96191a66495, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1216185777 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114282451932946448, guid: 0237594d5d3f62e49a9873903e4e77c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1924438860}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!223 &1249606434 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223347993132136324, guid: 0237594d5d3f62e49a9873903e4e77c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1924438860}
 --- !u!1001 &1379474699
 Prefab:
   m_ObjectHideFlags: 0
