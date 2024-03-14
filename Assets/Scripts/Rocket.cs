@@ -14,6 +14,8 @@ public class Rocket : MonoBehaviour {
     public float fuel = 100;
     [SerializeField] private float fuelCost = 1f;
     private bool bFinished = false;
+    enum State { Alive, Dying, Transcending };
+    State state = State.Alive;
 
 
     void Start()
@@ -40,6 +42,7 @@ public class Rocket : MonoBehaviour {
         }
         
     }
+    
 
     void OnCollisionEnter(Collision collision)
     {
@@ -48,15 +51,18 @@ public class Rocket : MonoBehaviour {
             case "Friendly":
                 break;
             case "Finish":
-                fuelText.text = "Level Complete!";
-                bFinished = true;
-                SceneManager.LoadScene(1);
+                Invoke("LoadNextScene", 3f);
                 break;
             default:
                 SceneManager.LoadScene(0);
                 break;
         }
 
+    }
+    
+    private static void LoadNextScene()
+    {
+        SceneManager.LoadScene(1);
     }
 
     private void Thrust()
