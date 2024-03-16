@@ -13,6 +13,8 @@ public class Rocket : MonoBehaviour {
     [SerializeField] private AudioClip mainEngine = null;
     [SerializeField] private AudioClip success = null;
     [SerializeField] private AudioClip crash = null;
+
+    [SerializeField] private float levelLoadDelay = 1f;
     
     [SerializeField] private ParticleSystem mainEngineParticles = null;
     [SerializeField] private ParticleSystem successParticles = null;
@@ -77,7 +79,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        Invoke("LoadNextScene", 1f);
+        Invoke("LoadNextScene", levelLoadDelay);
     }
 
     private void StartDeathSequence()
@@ -86,7 +88,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        Invoke("LoadFirstLevel", 1f);
+        Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
     private void LoadFirstLevel()
