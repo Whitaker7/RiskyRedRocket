@@ -2,18 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
+
 public class Rotator : MonoBehaviour {
 
 	[SerializeField] float rotationSpeed;
+    private enum RotationMode { Positive, Negative, None};
 
-	[SerializeField] bool rotateOnX;
-	private Vector3 xRotation = Vector3.right;
+    [SerializeField] RotationMode xRotationMode = RotationMode.None;
+    [SerializeField] RotationMode yRotationMode = RotationMode.None;
+    [SerializeField] RotationMode zRotationMode = RotationMode.None;
 
-	[SerializeField] bool rotateOnY;
-	private Vector3 yRotation = Vector3.up;
+	//[SerializeField] bool rotateOnX;
+	//private Vector3 xRotation = Vector3.right;
 
-	[SerializeField] bool rotateOnZ;
-	private Vector3 zRotation = Vector3.forward;
+	//[SerializeField] bool rotateOnY;
+	//private Vector3 yRotation = Vector3.up;
+
+	//[SerializeField] bool rotateOnZ;
+	//private Vector3 zRotation = Vector3.forward;
 
 	private Vector3 finalRotationDirection;
 
@@ -26,9 +33,9 @@ public class Rotator : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        print(finalRotationDirection);
 
 		float rotationThisFrame = rotationSpeed * Time.deltaTime;
+
 
 		transform.Rotate(finalRotationDirection * rotationThisFrame);
 	
@@ -36,17 +43,31 @@ public class Rotator : MonoBehaviour {
 
     private void CreateFinalRotationVector()
     {
-        if (rotateOnX)
+
+        finalRotationDirection.x = CalculateRotationBasedOnMode(xRotationMode);
+        finalRotationDirection.y = CalculateRotationBasedOnMode(yRotationMode);
+        finalRotationDirection.z = CalculateRotationBasedOnMode(zRotationMode);
+
+        print(finalRotationDirection);
+    }
+
+    private float CalculateRotationBasedOnMode(RotationMode mode)
+    {
+        switch (mode)
         {
-            finalRotationDirection += xRotation;
-        }
-        if (rotateOnY)
-        {
-            finalRotationDirection += yRotation;
-        }
-        if (rotateOnZ)
-        {
-            finalRotationDirection += zRotation;
+            case RotationMode.Positive:
+                return 1f;
+                break; 
+            case RotationMode.Negative:
+                return -1f;
+                break;
+            case RotationMode.None:
+                return 0f;
+                break;
+            default:
+                print("something went wrong" + mode);
+                return 0f;
+                break;
         }
     }
 

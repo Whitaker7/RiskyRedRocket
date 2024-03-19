@@ -37,7 +37,10 @@ public class Rocket : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
 
         var fuelTextGameObject = GameObject.Find("FuelText");
-        fuelText = fuelTextGameObject.GetComponent<Text>();
+        if (fuelTextGameObject)
+        {
+            fuelText = fuelTextGameObject.GetComponent<Text>();
+        }
 
         
     }
@@ -49,7 +52,10 @@ public class Rocket : MonoBehaviour {
         {
             RespondToThrustInput();
             RespondToRotateInput();
-            fuelText.text = fuel.ToString();
+            if (fuelText)
+            {
+                fuelText.text = fuel.ToString();
+            }
         }
         
     }
