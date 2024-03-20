@@ -13,15 +13,6 @@ public class Rotator : MonoBehaviour {
     [SerializeField] RotationMode yRotationMode = RotationMode.None;
     [SerializeField] RotationMode zRotationMode = RotationMode.None;
 
-	//[SerializeField] bool rotateOnX;
-	//private Vector3 xRotation = Vector3.right;
-
-	//[SerializeField] bool rotateOnY;
-	//private Vector3 yRotation = Vector3.up;
-
-	//[SerializeField] bool rotateOnZ;
-	//private Vector3 zRotation = Vector3.forward;
-
 	private Vector3 finalRotationDirection;
 
 	// Use this for initialization
@@ -57,17 +48,13 @@ public class Rotator : MonoBehaviour {
         {
             case RotationMode.Positive:
                 return 1f;
-                break; 
             case RotationMode.Negative:
                 return -1f;
-                break;
             case RotationMode.None:
                 return 0f;
-                break;
             default:
-                print("something went wrong" + mode);
+                print("something went wrong in CalculateRotationBasedOnMode in Rotator.cs" + mode);
                 return 0f;
-                break;
         }
     }
 
