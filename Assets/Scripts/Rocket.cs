@@ -85,7 +85,8 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        Invoke("LoadNextScene", levelLoadDelay);
+        //Invoke("LoadNextLevel", levelLoadDelay);
+        LoadNextLevel();
     }
 
     private void StartDeathSequence()
@@ -94,7 +95,8 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        Invoke("LoadFirstLevel", levelLoadDelay);
+        //Invoke("LoadFirstLevel", levelLoadDelay);
+        LoadFirstLevel();
     }
 
     private void LoadFirstLevel()
@@ -102,7 +104,7 @@ public class Rocket : MonoBehaviour {
         SceneManager.LoadScene(2);
     }
     
-    private void LoadNextScene()
+    private void LoadNextLevel()
     {
         fuelText.text = "Level Complete!";
         bFinished = true;
