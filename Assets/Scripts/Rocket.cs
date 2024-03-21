@@ -101,14 +101,14 @@ public class Rocket : MonoBehaviour {
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
     
     private void LoadNextLevel()
     {
         fuelText.text = "Level Complete!";
         bFinished = true;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
 
     private void RespondToThrustInput()
