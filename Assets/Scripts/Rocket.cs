@@ -85,8 +85,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(success);
         successParticles.Play();
-        //Invoke("LoadNextLevel", levelLoadDelay);
-        LoadNextLevel();
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void StartDeathSequence()
@@ -95,8 +94,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(crash);
         crashParticles.Play();
-        //Invoke("LoadFirstLevel", levelLoadDelay);
-        LoadFirstLevel();
+        Invoke("LoadFirstLevel", levelLoadDelay);
     }
 
     private void LoadFirstLevel()
