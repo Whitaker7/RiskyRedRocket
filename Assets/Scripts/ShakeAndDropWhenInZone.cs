@@ -11,6 +11,7 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
 	[SerializeField] float fShakeTime = 1.0f;
 
 	private float timer = 0;
+    private bool bShaking = false;
 	// Use this for initialization
 	void Start () {
 		oscillator.enabled = false;
@@ -19,27 +20,33 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        ShakeAndDrop();
     }
 
     private void ShakeAndDrop()
     {
-        timer += 1f;
+        bShaking = true;
         BeginShaking();
-        if (timer > 250)
-        {
-            StopShaking();
-        }
+        Invoke("StopShaking", fShakeTime);
     }
 
     private void StopShaking()
     {
 		oscillator.enabled = false;
 		rb.useGravity = true;
+        rb.isKinematic = false;
     }
 
     private void BeginShaking()
     {
+        trigger.enabled = false;
 		oscillator.enabled = true;
+    }
+    void OnTriggerEnter(Collider Other)
+    {
+        if (Other.gameObject.tag == "Player")
+        {
+            ShakeAndDrop();
+        }
+        
     }
 }
