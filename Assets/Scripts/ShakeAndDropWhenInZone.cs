@@ -9,6 +9,8 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
 	[SerializeField] BoxCollider trigger;
 	[SerializeField] Oscillator oscillator;
 	[SerializeField] float fShakeTime = 1.0f;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource smashAudioSource;
 
 	private float timer = 0;
     private bool bShaking = false;
@@ -31,6 +33,7 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
 
     private void StopShaking()
     {
+        audioSource.Stop();
 		oscillator.enabled = false;
 		rb.useGravity = true;
         rb.isKinematic = false;
@@ -38,6 +41,7 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
 
     private void BeginShaking()
     {
+        audioSource.Play();
         trigger.enabled = false;
 		oscillator.enabled = true;
     }
@@ -48,5 +52,13 @@ public class ShakeAndDropWhenInZone : MonoBehaviour {
             ShakeAndDrop();
         }
         
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            smashAudioSource.Play();
+        }
     }
 }
