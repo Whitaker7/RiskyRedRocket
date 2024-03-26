@@ -37,4 +37,14 @@ public class Oscillator : MonoBehaviour {
 		Vector3 offset = movementVector * movementFactor;
 		transform.position = startingPos + offset;
 	}
+
+	public void SetMovementVector(Vector3 inputVector)
+	{
+		movementVector = inputVector;
+	}
+
+	public void SetPeriod(float inputPeriod)
+	{
+		period = inputPeriod;
+	}
 }
