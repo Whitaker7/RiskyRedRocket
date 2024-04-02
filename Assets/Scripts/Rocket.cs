@@ -20,7 +20,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] private ParticleSystem successParticles = null;
     [SerializeField] private ParticleSystem crashParticles = null;
 
-
+    private bool bCollisionEnabled = true;
     private Rigidbody rb;
     private AudioSource audioSource;
     private Text fuelText;
@@ -52,18 +52,45 @@ public class Rocket : MonoBehaviour {
         {
             RespondToThrustInput();
             RespondToRotateInput();
-            if (fuelText)
+            SetFuelText();
+            if (Debug.isDebugBuild)
             {
-                fuelText.text = fuel.ToString();
+                RespondToDebugKeys();
+            }
+            
+        }
+
+    }
+
+    private void RespondToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            bCollisionEnabled = !bCollisionEnabled;
+        }
+    }
+
+    private void SetFuelText()
+    {
+        if (fuelText)
+        {
+            fuelText.text = fuel.ToString();
+
+            if (bCollisionEnabled == false)
+            {
+                fuelText.text = "Collisions Are turned Off! Press C to turn them back on.";
             }
         }
-        
     }
-    
 
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) return; //ignore collisions when dead
+        
+        if (state != State.Alive || bCollisionEnabled == false) return; //ignore collisions when dead or if they are turned off for debugging
 
         switch (collision.gameObject.tag)
         {
@@ -104,9 +131,15 @@ public class Rocket : MonoBehaviour {
     
     private void LoadNextLevel()
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
         fuelText.text = "Level Complete!";
         bFinished = true;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private void RespondToThrustInput()
